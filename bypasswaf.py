@@ -37,11 +37,13 @@ class BurpExtender(IBurpExtender, ISessionHandlingAction):
     bypassip = '127.0.0.1'
 
     # Add WAF Bypass headers
-    headers.add('x-originating-IP: '+bypassip)
-    headers.add('x-forwarded-for: '+bypassip)
-    headers.add('x-remote-IP: '+bypassip)
-    headers.add('x-remote-addr: '+bypassip)
-
+    headers.add('X-Originating-IP: '+bypassip)
+    headers.add('X-Forwarded-For: '+bypassip)
+    headers.add('X-Remote-IP: '+bypassip)
+    headers.add('X-Remote-Addr: '+bypassip)
+    headers.add('X-Client-IP: '+bypassip)
+    headers.add('X-Forwarded-Host: '+bypassip)
+    
     # Build request with bypass headers
     message = self._helpers.buildHttpMessage(headers, reqBody)
 
